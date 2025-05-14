@@ -1,0 +1,19 @@
+name: Extract Titles
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run extractor
+        run: |
+          chmod +x extract.sh
+          ./extract.sh
+      - name: Upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: titles
+          path: titles.md
